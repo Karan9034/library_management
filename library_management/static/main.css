@@ -1,4 +1,42 @@
-.container{
-    width: 90vw;
-    margin: 40px 5vw;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    margin-bottom: 6vw;
+}
+nav{
+    background-color: indigo;
+    max-height: 4vw;
+}
+.nav-item{
+    margin-right: 10px;
+}
+.container .row{
+    margin-top: 20px;
+}
+#heading{
+    margin-top: 10vh;
+    text-align: center;
+}
+.pagination a{
+    border-color: indigo;
+    margin-right: 4px;
+    margin-left: 4px;
+    color: indigo;
+}
+.pagination a:hover{
+    background-color: indigo;
+    border-color: indigo;
+}
+.pagination a.btn-danger{
+    color: white;
+    background-color: indigo;
+}
+input.search{
+    width: 90% !important;
+}
+button.search{
+    width: 8%;
 }

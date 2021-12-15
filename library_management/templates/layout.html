@@ -13,8 +13,22 @@
 </head>
 <body>
     <header>
-        <nav>
-            
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+              <a href="/" class="navbar-brand mr-4">Library Management</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto"></div>
+                <div class="navbar-nav">
+                  <a class="nav-item nav-link" href="/">Home</a>
+                  <a class="nav-item nav-link" href="{{ url_for('books.all_books') }}">Books</a>
+                  <a class="nav-item nav-link" href="{{ url_for('members.all_members') }}">Members</a>
+                  <a class="nav-item nav-link" href="{{ url_for('transactions.all_transactions') }}">Transactions</a>
+                </div>
+              </div>
+            </div>
         </nav>
     </header>
     <main class="container">

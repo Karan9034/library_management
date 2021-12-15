@@ -15,7 +15,11 @@ def create_app():
 
     from library_management.main.routes import main
     from library_management.books.routes import books
+    from library_management.members.routes import members
+    from library_management.transactions.routes import transactions
     app.register_blueprint(main)
     app.register_blueprint(books)
+    app.register_blueprint(members)
+    app.register_blueprint(transactions)
 
     return app

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <br>
+    <h1>Return Book</h1>
+    <h6>Issued On: {{transaction.issued_on}}</h6>
+    <h6>Returned On: {{time}}</h6>
+    <h6>Chargable Weeks: {{time - transaction.issued_on}}</h6>
+    <h6>Total Charge: </h6>
+    <br>
+
+    <form method="POST" action="">
+        {{ return_form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ return_form.amount.label(class="form-control-label") }}
+                {% if return_form.amount.errors %}
+                    {{ return_form.amount(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in return_form.amount.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ return_form.amount(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ return_form.returnBtn(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+{% endblock content %}
