@@ -1,4 +1,3 @@
-from enum import unique
 from library_management import db
 from datetime import datetime
 
@@ -12,6 +11,7 @@ class Book(db.Model):
     publisher = db.Column(db.String(150), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     rented = db.Column(db.Integer, nullable=False, default=0)
+    no_of_times_rented = db.Column(db.Integer, nullable=False, default=0)
     transactions = db.relationship('Transaction', backref='book', lazy=True)
 
     def __repr__(self):
@@ -22,6 +22,9 @@ class Member(db.Model):
     member_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(150), nullable=False, unique=True)
+    rented = db.Column(db.Integer, nullable=False, default=0)
+    outstanding_dues = db.Column(db.Integer, nullable=False, default=0)
+    total_paid = db.Column(db.Integer, nullable=False, default=0)
     transactions = db.relationship('Transaction', backref='member', lazy=True)
 
     def __repr__(self):
@@ -30,9 +33,9 @@ class Member(db.Model):
 class Transaction(db.Model):
     __tablename__='transaction'
     transaction_id = db.Column(db.Integer, primary_key=True)
-    member_id = db.Column(db.Integer, db.ForeignKey('member.member_id'), nullable=False)
-    book_id = db.Column(db.Integer, db.ForeignKey('book.book_id'), nullable=False)
+    member_id = db.Column(db.Integer, db.ForeignKey('member.member_id'))
+    book_id = db.Column(db.Integer, db.ForeignKey('book.book_id'))
     issued_on = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    dues_per_week = db.Column(db.Integer, nullable=False, default=0)
+    charges = db.Column(db.Integer, nullable=False, default=0)
     amount_paid = db.Column(db.Integer, nullable=False, default=0)
     closed = db.Column(db.Boolean, nullable=False, default=False)

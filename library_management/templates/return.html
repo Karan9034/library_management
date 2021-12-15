@@ -3,10 +3,9 @@
 
     <br>
     <h1>Return Book</h1>
-    <h6>Issued On: {{transaction.issued_on}}</h6>
-    <h6>Returned On: {{time}}</h6>
-    <h6>Chargable Weeks: {{time - transaction.issued_on}}</h6>
-    <h6>Total Charge: </h6>
+    <h6>Issued On: {{"{}".format(transaction.issued_on.strftime("%b %d, %Y"))}}</h6>
+    <h6>Returned On: {{time.strftime("%b %d, %Y")}}</h6>
+    <h6>Charges: {{"INR {:.1f}".format(transaction.charges)}}</h6>
     <br>
 
     <form method="POST" action="">

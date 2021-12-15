@@ -22,8 +22,11 @@ def return_book(id):
         transaction.amount_paid = amount
         transaction.closed = True
         book = Book.query.get(transaction.book.book_id)
-        book.quantity += 1
         book.rented -= 1
+        member = Member.query.get(transaction.member.member_id)
+        member.outstanding_dues -= amount
+        member.total_paid += amount
+        member.rented -= 1
         db.session.commit()
         flash('Transaction Closed', 'success')
         return redirect(url_for('transactions.all_transactions'))

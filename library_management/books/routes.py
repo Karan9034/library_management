@@ -83,7 +83,7 @@ def issue_book(id):
     if request.method == 'POST' and issue_form.validate_on_submit():
         email = issue_form.email.data
         book_id = issue_form.book_id.data
-        dues_per_week = issue_form.dues_per_week.data
+        charges = issue_form.charges.data
         member = Member.query.filter_by(email=email).first()
         if not member:
             flash(f'No member registered with the email {email}. Register Now!', 'danger')
@@ -92,9 +92,14 @@ def issue_book(id):
         if not book:
             flash(f'No book available with the id {book_id}.', 'danger')
             return redirect(url_for('books.all_books'))
-        trans = Transaction(book_id=book.book_id, member_id=member.member_id, dues_per_week=dues_per_week)
-        book.quantity -= 1
+        if member.outstanding_dues + charges > 500:
+            flash('Outstanding debt exceeds INR 500', 'warning')
+            return redirect(url_for('transactions.all_transactions'))
+        trans = Transaction(book_id=book.book_id, member_id=member.member_id, charges=charges)
         book.rented += 1
+        book.no_of_times_rented += 1
+        member.outstanding_dues += charges
+        member.rented += 1
         db.session.add(trans)
         db.session.commit()
         flash('Book Issued Successfully', 'success')

@@ -36,16 +36,16 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ issue_form.dues_per_week.label(class="form-control-label") }}
-                {% if issue_form.dues_per_week.errors %}
-                    {{ issue_form.dues_per_week(class="form-control form-control-lg is-invalid") }}
+                {{ issue_form.charges.label(class="form-control-label") }}
+                {% if issue_form.charges.errors %}
+                    {{ issue_form.charges(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in issue_form.dues_per_week.errors %}
+                        {% for error in issue_form.charges.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ issue_form.dues_per_week(class="form-control form-control-lg") }}
+                    {{ issue_form.charges(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
         </fieldset>

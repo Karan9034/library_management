@@ -17,7 +17,7 @@
                     <th>Member Name</th>
                     <th>Member Email</th>
                     <th>Book Title</th>
-                    <th>Charges Per Week</th>
+                    <th>Charges</th>
                     <th>Amount Paid</th>
                     <th></th>
                 </tr>
@@ -26,26 +26,26 @@
                 {% for transaction in data %}
                     {% if not transaction.closed %}
                     <tr>
-                        <td><span class="btn btn-dark pull-right">{{"{:05d}".format(transaction.transaction_id)}}</span></td>
-                        <td>{{transaction.issued_on}}</td>
+                        <td><span class="btn pull-right">{{"{:05d}".format(transaction.transaction_id)}}</span></td>
+                        <td>{{"{}".format(transaction.issued_on.strftime("%b %d, %Y"))}}</td>
                         <td>{{transaction.member.name}}</td>
                         <td>{{transaction.member.email}}</td>
                         <td>{{transaction.book.title}}</td>
-                        <td>{{"{:.1f}".format(transaction.dues_per_week)}}</td>
-                        <td>{{"{:.1f}".format(transaction.amount_paid)}}</td>
+                        <td>{{"INR {:.1f}".format(transaction.charges)}}</td>
+                        <td>{{"INR {:.1f}".format(transaction.amount_paid)}}</td>
                         <td>
                             <button class="btn btn-secondary" onclick="return window.location = '/transactions/close/{{transaction.transaction_id}}';">Return</button>
                         </td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td><span class="btn btn-dark pull-right">{{"{:05d}".format(transaction.transaction_id)}}</span></td>
-                        <td>{{transaction.issued_on}}</td>
+                        <td><span class="btn pull-right">{{"{:05d}".format(transaction.transaction_id)}}</span></td>
+                        <td>{{"{}".format(transaction.issued_on.strftime("%b %d, %Y"))}}</td>
                         <td>{{transaction.member.name}}</td>
                         <td>{{transaction.member.email}}</td>
                         <td>{{transaction.book.title}}</td>
-                        <td>{{"{:.1f}".format(transaction.dues_per_week)}}</td>
-                        <td>{{"{:.1f}".format(transaction.amount_paid)}}</td>
+                        <td>{{"INR {:.1f}".format(transaction.charges)}}</td>
+                        <td>{{"INR {:.1f}".format(transaction.amount_paid)}}</td>
                         <td>
                             <button class="btn btn-disabled">Closed</button>
                         </td>

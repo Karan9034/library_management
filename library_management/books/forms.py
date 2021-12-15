@@ -13,5 +13,5 @@ class ImportForm(FlaskForm):
 class IssueForm(FlaskForm):
     email = StringField('Email', validators=[validators.DataRequired(), validators.Email()])
     book_id = IntegerField('Book ID', validators=[validators.DataRequired()])
-    dues_per_week = IntegerField('Charges Per Week', validators=[validators.DataRequired()])
+    charges = IntegerField('Charges', validators=[validators.DataRequired()])
     issueBtn = SubmitField('Issue')

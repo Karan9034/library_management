@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, validators
+from wtforms import IntegerField, SubmitField, validators
 
 class ReturnForm(FlaskForm):
-    amount = StringField('Amount Paid', validators=[validators.DataRequired()])
+    amount = IntegerField('Amount Paid', validators=[validators.DataRequired()])
     returnBtn = SubmitField('Return')
