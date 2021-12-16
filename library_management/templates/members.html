@@ -30,10 +30,7 @@
                     <td>{{member.rented}}</td>
                     <td>{{"INR {:.1f}".format(member.outstanding_dues)}}</td>
                     <td>
-                        <form action="/member/{{member.member_id}}/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this member?');">
-                            <input type="hidden" name="method" value="Delete">
-                            <input type="submit" value="Delete" class="btn btn-danger">
-                        </form>
+                        <button class="btn btn-secondary" onclick="window.location='/member/{{member.member_id}}/edit';">Edit</button>
                     </td>
                 </tr>
                 {% endfor %}

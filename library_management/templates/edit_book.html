@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <br>
+    <h1>Edit Book Quantity</h1>
+    <br>
+
+    <form method="POST" action="">
+        {{ edit_form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ edit_form.quantity.label(class="form-control-label") }}
+                {% if edit_form.quantity.errors %}
+                    {{ edit_form.quantity(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in edit_form.quantity.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ edit_form.quantity(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ edit_form.editBtn(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+{% endblock content %}

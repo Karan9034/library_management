@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, flash, request, url_for
 from library_management import db
 from library_management.models import Member, Transaction, Book
-from library_management.members.forms import RegisterForm
+from library_management.members.forms import RegisterForm, EditForm
 
 members = Blueprint("members", __name__)
 
@@ -17,6 +17,10 @@ def register_member():
     if request.method=='POST' and register_form.validate_on_submit():
         name = register_form.name.data
         email = register_form.email.data
+        member = Member.query.filter_by(email=email).first()
+        if member:
+            flash('Member already exists', 'info')
+        return redirect(url_for('members.all_members'))
         member = Member(name=name, email=email)
         db.session.add(member)
         db.session.commit()
@@ -35,10 +39,17 @@ def search():
     members = sorted(members, key=lambda x: x.member_id, reverse=False)
     return render_template('members.html', title=f"Search {query}", data=members)
 
-@members.route('/member/<int:id>/delete', methods=['POST'])
-def delete(id):
+@members.route('/member/<int:id>/edit', methods=['GET', 'POST'])
+def edit(id):
     member = Member.query.get_or_404(id)
-    db.session.delete(member)
-    db.session.commit()
-    flash('The member has been deleted!', 'danger')
-    return redirect(url_for('members.all_members'))
+    edit_form = EditForm()
+    if request.method == 'POST' and edit_form.validate_on_submit():
+        member.name = edit_form.name.data
+        member.email = edit_form.email.data
+        db.session.commit()
+        flash('The member details have been updated!', 'success')
+        return redirect(url_for('members.all_members'))
+    elif request.method == 'GET':
+        edit_form.name.data = member.name
+        edit_form.email.data = member.email
+    return render_template('edit_member.html', title=f"Member {member.member_id}", edit_form=edit_form)

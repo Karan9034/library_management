@@ -15,3 +15,7 @@ class IssueForm(FlaskForm):
     book_id = IntegerField('Book ID', validators=[validators.DataRequired()])
     charges = IntegerField('Charges', validators=[validators.DataRequired()])
     issueBtn = SubmitField('Issue')
+
+class EditForm(FlaskForm):
+    quantity = IntegerField('Quantity of the book', validators=[validators.DataRequired(), validators.NumberRange()])
+    editBtn = SubmitField('Update Quantity')
