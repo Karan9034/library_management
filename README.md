@@ -24,6 +24,9 @@ python setupDB.py
 python run.py
 ```
 
+Check out the deployed version of this app on Heroku:
+[https://library-management-flask.herokuapp.com/](https://library-management-flask.herokuapp.com/)
+
 ## Screenshots
 
 ![Home](screenshots/Home.png "Home")
