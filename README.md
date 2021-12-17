@@ -30,16 +30,55 @@ Check out the deployed version of this app on Heroku:
 ## Screenshots
 
 ![Home](screenshots/Home.png "Home")
+
+<br>
+
 ![Books](screenshots/Books.png "Books")
+
+<br>
+
 ![Members](screenshots/Members.png "Members")
+
+<br>
+
 ![Transactions](screenshots/Transactions.png "Transactions")
+
+<br>
+
 ![Register Member](screenshots/Register_Member.png "Home")
+
+<br>
+
 ![Member_Registered](screenshots/Member_Registered.png "Member_Registered")
+
+<br>
+
 ![Edit_Member_Details](screenshots/Edit_Member_Details.png "Edit_Member_Details")
+
+<br>
+
 ![Import_Books](screenshots/Import_Books.png "Import_Books")
+
+<br>
+
 ![Books_Imported](screenshots/Books_Imported.png "Books_Imported")
+
+<br>
+
 ![Issue_Book](screenshots/Issue_Book.png "Issue_Book")
+
+<br>
+
 ![Issue_Successful](screenshots/Issue_Successful.png "Issue_Successful")
+
+<br>
+
 ![Book_Returned](screenshots/Book_Returned.png "Book_Returned")
+
+<br>
+
 ![Reports](screenshots/Reports.png "Reports")
+
+<br>
+
 ![Reports_2](screenshots/Reports_2.png "Reports_2")
