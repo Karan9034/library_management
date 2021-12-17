@@ -20,7 +20,7 @@ def register_member():
         member = Member.query.filter_by(email=email).first()
         if member:
             flash('Member already exists', 'info')
-        return redirect(url_for('members.all_members'))
+            return redirect(url_for('members.all_members'))
         member = Member(name=name, email=email)
         db.session.add(member)
         db.session.commit()

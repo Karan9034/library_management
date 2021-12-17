@@ -28,7 +28,6 @@ def import_books():
         number_of_books_imported = 0
         repeated_books = 0
         while number_of_books_imported != number:
-            print(page)
             res = get(f"https://frappe.io/api/method/frappe-library?page={page}&publisher={publisher}&authors={authors}&title={title}&isbn={isbn}")
             data = res.json()
             if not data['message']:
@@ -37,9 +36,9 @@ def import_books():
                 temp = Book.query.filter_by(book_id=book['bookID']).first()
                 if temp:
                     repeated_books += 1
-                    number_of_books_imported += 1
-                    temp.quantity += quantity
-                    db.session.commit()
+                    # number_of_books_imported += 1
+                    # temp.quantity += quantity
+                    # db.session.commit()
                     continue
                 temp = Book(book_id=book['bookID'], title=book['title'], authors=book['authors'], rating=book['average_rating'], isbn=book['isbn'], publisher=book['publisher'], quantity=quantity)
                 db.session.add(temp)
@@ -54,8 +53,7 @@ def import_books():
             msg_type = 'warning'
             msg += f"{number-number_of_books_imported} books were missing"
         if repeated_books > 0:
-            flash(f'{repeated_books} books were repeated. Quantity updated', 'info')
-        print(msg)
+            flash(f'{repeated_books} books were repeated.', 'info')
         flash(msg, msg_type)
         return redirect(url_for('books.all_books'))
     return render_template('import_books.html', title="Import Books", import_form=import_form)

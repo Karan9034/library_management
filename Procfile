@@ -1,0 +1,1 @@
+web: python setupDB.py && gunicorn run:app
